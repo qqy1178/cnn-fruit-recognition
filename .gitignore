@@ -1,0 +1,30 @@
+# Java / Maven
+fruit-server/target/
+*.class
+*.jar
+!fruit-server/mvnw*.jar
+
+# Node / Vite
+fruit-web/node_modules/
+fruit-web/dist/
+npm-debug.log*
+
+# 运行时上传文件（只保留目录占位）
+uploads/*
+!uploads/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# IDE / OS
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 日志与临时文件
+*.log
+logs/

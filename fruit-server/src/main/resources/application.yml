@@ -1,0 +1,39 @@
+server:
+  # 8080 被别的 java 进程占用，改用 8081
+  port: 8081
+
+spring:
+  application:
+    name: fruit-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/fruit_recognition?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    # 优先读环境变量 DB_PASSWORD；没配则用本机默认值，保证 clone 下来能直接跑
+    password: ${DB_PASSWORD:123456}
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    # 开发期打印 SQL，上线/答辩前注释掉
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+# ===== 本项目的自定义配置 =====
+fruit:
+  python:
+    exe: python
+    # ⚠️ 改成你机器上的真实路径
+    script: C:/Users/qqy123/Desktop/claude/毕设/demo/predict_json.py
+    timeout-seconds: 60
+  upload-dir: C:/Users/qqy123/Desktop/claude/毕设/uploads
+  jwt:
+    # ⚠️ 必须至少 32 个字符，否则启动报错。随便改成一串乱码。
+    secret: change-me-to-a-random-string-at-least-32-chars
+    expire-hours: 24
